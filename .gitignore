@@ -1,0 +1,17 @@
+# Entorno virtual (oculto o visible)
+.venv/
+env/
+
+# Cachés de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Archivos sensibles
+.env
+
+# Archivos de sistema/editor
+.DS_Store
+.vscode/
+*.log
