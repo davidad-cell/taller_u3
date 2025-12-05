@@ -17,3 +17,18 @@ def ensure_database(db_url: str) -> None:
     with engine.begin() as conn:
         print(f"Creating database {dbname}")
         conn.execute(text(f"CREATE DATABASE IF NOT EXISTS `{dbname}` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci"))
+
+
+def main() -> None:
+    fake = Faker('es_ES')
+
+    
+    rows = [{
+        "nombre": fake.name(),
+        "email": fake.email(),
+        "direccion": fake.address().replace("\n", ", "),
+        "telefono": fake.phone_number(),
+        "fecha_nacimiento": fake.date_of_birth(minimum_age=18, maximum_age=90).strftime("%Y-%m-%d"),
+        "ciudad": fake.city(),
+        "transporte": fake.random_element(elements=["Carro", "Moto", "Bicicleta", "Bus", "Metro", "Camión"])
+    } for _ in range(100000)]
