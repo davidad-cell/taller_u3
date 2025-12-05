@@ -47,3 +47,20 @@ def main() -> None:
 
     ensure_database(db_url)
     engine = create_engine(db_url, future=True)
+
+    
+    with engine.begin() as conn:
+        conn.execute(text(
+            """
+            CREATE TABLE IF NOT EXISTS personas_david (
+                pk_id_falso INT AUTO_INCREMENT PRIMARY KEY,
+                nombre VARCHAR(255) NOT NULL,
+                email VARCHAR(255) NOT NULL,
+                direccion TEXT NOT NULL,
+                telefono VARCHAR(50) NOT NULL,
+                fecha_nacimiento DATE NOT NULL,
+                ciudad VARCHAR(255) NOT NULL,
+                transporte VARCHAR(50) NOT NULL
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+            """
+        ))
