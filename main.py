@@ -64,3 +64,17 @@ def main() -> None:
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
             """
         ))
+
+        
+        conn.execute(
+            text("""INSERT INTO personas_david 
+                    (nombre, email, direccion, telefono, fecha_nacimiento, ciudad, transporte) 
+                    VALUES (:nombre, :email, :direccion, :telefono, :fecha_nacimiento, :ciudad, :transporte)"""),
+            rows,
+        )
+
+    print(" insertada 100,000 registros correctamente")
+
+
+if __name__ == "__main__":
+    main()
